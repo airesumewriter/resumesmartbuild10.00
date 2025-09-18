@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeSmartBuild | Smarter Resumes. Smarter Careers.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Import your style.css content with proper scoping */
+        .resume-smartbuild {
+            /* Reset and Base Styles */
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --accent: #f59e0b;
+            --card-bg: #ffffff;
+            --header-bg: #1e293b;
+            --sidebar-bg: #1e293b;
+            --footer-bg: #0f172a;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+        }
+
+        .resume-smartbuild * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .resume-smartbuild {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .resume-smartbuild header {
+            background: var(--header-bg);
+            color: var(--light);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .resume-smartbuild .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .resume-smartbuild .logo-icon {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        .resume-smartbuild .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .resume-smartbuild .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Layout */
+        .resume-smartbuild .container {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Sidebar Styles */
+        .resume-smartbuild .sidebar {
+            width: 280px;
+            background: var(--sidebar-bg);
+            color: var(--light);
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow);
+        }
+
+        .resume-smartbuild .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #334155;
+        }
+
+        .resume-smartbuild .sidebar-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .resume-smartbuild .nav-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .resume-smartbuild .nav-item {
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .resume-smartbuild .nav-item:hover {
+            background: #334155;
+        }
+
+        .resume-smartbuild .nav-item.active {
+            background: var(--primary);
+        }
+
+        .resume-smartbuild .nav-icon {
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        /* Main Content */
+        .resume-smartbuild .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .resume-smartbuild .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .resume-smartbuild .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .resume-smartbuild .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .resume-smartbuild .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .resume-smartbuild .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Articles Grid */
+        .resume-smartbuild .section-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        .resume-smartbuild .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .resume-smartbuild .article-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .resume-smartbuild .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+
+        .resume-smartbuild .article-image {
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .resume-smartbuild .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .resume-smartbuild .article-card:hover .article-image img {
+            transform: scale(1.05);
+        }
+
+        .resume-smartbuild .article-content {
+            padding: 1.5rem;
+        }
+
+        .resume-smartbuild .article-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        .resume-smartbuild .article-excerpt {
+            color: var(--gray);
+            margin-bottom: 1.25rem;
+        }
+
+        .resume-smartbuild .read-more {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .resume-smartbuild .read-more:hover {
+            color: var(--primary-dark);
+            gap: 8px;
+        }
+
+        /* Tools Section */
+        .resume-smartbuild .tools-section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .resume-smartbuild .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resume-smartbuild .tool-card {
+            background: #f8fafc;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .resume-smartbuild .tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .resume-smartbuild .tool-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .resume-smartbuild .tool-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .resume-smartbuild .tool-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .resume-smartbuild footer {
+            background: var(--footer-bg);
+            color: var(--light);
+            padding: 2rem;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .resume-smartbuild .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .resume-smartbuild .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .resume-smartbuild .footer-link {
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .resume-smartbuild .footer-link:hover {
+            color: var(--accent);
+        }
+
+        .resume-smartbuild .copyright {
+            margin-top: 1.5rem;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .resume-smartbuild .container {
+                flex-direction: column;
+            }
+            
+            .resume-smartbuild .sidebar {
+                width: 100%;
+                display: none;
+            }
+            
+            .resume-smartbuild .sidebar.active {
+                display: flex;
+            }
+            
+            .resume-smartbuild .nav-toggle {
+                display: block;
+            }
+            
+            .resume-smartbuild .articles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .resume-smartbuild .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .resume-smartbuild .hero p {
+                font-size: 1rem;
+            }
+            
+            .resume-smartbuild .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resume-smartbuild .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resume-smartbuild .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-smartbuild">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-file-alt"></i></div>
+                <div class="logo-text">ResumeSmartBuild</div>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </header>
+
+        <div class="container">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-title">ResumeSmartBuild</div>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item active">
+                        <i class="fas fa-home nav-icon"></i>
+                        <span>Home</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="fas fa-robot nav-icon"></i>
+                        <span>AI Tools</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="fas fa-newspaper nav-icon"></i>
+                        <span>Articles</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="fas fa-envelope nav-icon"></i>
+                        <span>Contact</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="fas fa-download nav-icon"></i>
+                        <span>Resources</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="fas fa-star nav-icon"></i>
+                        <span>Premium</span>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Hero Section -->
+                <section class="hero">
+                    <h1>Smarter Resumes. Smarter Careers.</h1>
+                    <p>Build your resume the smart way. Get your free 12-step checklist and optimize with AI-powered tools.</p>
+                    <a href="#" class="cta-button">Get Started Now</a>
+                </section>
+
+                <!-- Featured Articles -->
+                <h2 class="section-title">Latest Articles</h2>
+                <div class="articles-grid">
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Beat ATS 2025">
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">How to Beat the ATS in 2025</h3>
+                            <p class="article-excerpt">Learn proven strategies to make your resume stand out and pass Applicant Tracking Systems.</p>
+                            <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Resume Mistakes">
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">Top 10 Resume Mistakes to Avoid</h3>
+                            <p class="article-excerpt">Avoid these common mistakes and get noticed faster by recruiters.</p>
+                            <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="AI Resume Tools">
+                        </div>
+                        <div class="article-content">
+                            <h3 class="article-title">AI Resume Tools That Actually Work</h3>
+                            <p class="article-excerpt">The best free and paid tools to power up your career.</p>
+                            <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- AI Tools Section -->
+                <h2 class="section-title">AI-Powered Tools</h2>
+                <div class="tools-section">
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <i class="fas fa-magic"></i>
+                            </div>
+                            <h3 class="tool-title">Resume Builder</h3>
+                            <p class="tool-description">Create ATS-friendly resumes with our AI-powered builder.</p>
+                        </div>
+
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3 class="tool-title">Resume Scanner</h3>
+                            <p class="tool-description">Scan your resume for ATS compatibility and improvements.</p>
+                        </div>
+
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3 class="tool-title">Cover Letter Generator</h3>
+                            <p class="tool-description">Create personalized cover letters in minutes.</p>
+                        </div>
+
+                        <div class="tool-card">
+                            <div class="tool-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="tool-title">Career Analyzer</h3>
+                            <p class="tool-description">Get personalized career path recommendations.</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Home</a>
+                    <a href="#" class="footer-link">About Us</a>
+                    <a href="#" class="footer-link">Services</a>
+                    <a href="#" class="footer-link">Articles</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+                <div class="copyright">
+                    <p>© 2025 ResumeSmartBuild. All Rights Reserved. | <a href="mailto:george.tolin84@gmail.com" class="footer-link">george.tolin84@gmail.com</a></p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Toggle mobile sidebar
+            document.getElementById('navToggle').addEventListener('click', function() {
+                document.getElementById('sidebar').classList.toggle('active');
+            });
+
+            // Simple animation for page elements
+            document.addEventListener('DOMContentLoaded', function() {
+                const elements = document.querySelectorAll('.article-card, .tool-card');
+                
+                elements.forEach(element => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                });
+                
+                setTimeout(() => {
+                    elements.forEach((element, index) => {
+                        setTimeout(() => {
+                            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            element.style.opacity = '1';
+                            element.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    });
+                }, 300);
+            });
+        </script>
+    </div>
+</body>
+</html>
